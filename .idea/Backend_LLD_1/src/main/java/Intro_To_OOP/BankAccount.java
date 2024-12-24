@@ -1,10 +1,26 @@
 package main.java.Intro_To_OOP;
 
 class BankAccount {
-    double balance;
-    String ownerName;
+    private double balance;
+    private String ownerName;
 
-    void deposit(double amountToDeposit) {
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void deposit(double amountToDeposit) {
         if(amountToDeposit > 0.0) {
             this.balance += amountToDeposit;
             System.out.println("Deposited " + amountToDeposit + " to " + ownerName);
@@ -13,7 +29,7 @@ class BankAccount {
         }
     }
 
-    void withdraw(double amountToWithdraw) {
+    public void withdraw(double amountToWithdraw) {
         if(amountToWithdraw > 0.0) {
             if(amountToWithdraw <= this.balance) {
                 this.balance -= amountToWithdraw;
