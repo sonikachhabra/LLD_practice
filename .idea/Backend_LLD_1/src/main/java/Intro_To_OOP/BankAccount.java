@@ -1,8 +1,24 @@
 package main.java.Intro_To_OOP;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class BankAccount {
     private double balance;
     private String ownerName;
+    List<String> transactionHistory;
+
+    public BankAccount() {
+        this.balance = 0.0;
+        this.ownerName = "";
+        this.transactionHistory = new ArrayList<>();
+    }
+
+    public BankAccount(double balance, String ownerName) {
+        this.ownerName = ownerName;
+        this.balance = balance;
+        this.transactionHistory = new ArrayList<>();
+    }
 
     public double getBalance() {
         return this.balance;
@@ -23,7 +39,7 @@ class BankAccount {
     public void deposit(double amountToDeposit) {
         if(amountToDeposit > 0.0) {
             this.balance += amountToDeposit;
-            System.out.println("Deposited " + amountToDeposit + " to " + ownerName);
+            transactionHistory.add("Deposited $" + amountToDeposit + " to " + ownerName);
         }else {
             System.out.println("Please enter a positive amount to deposit for " + this.ownerName);
         }
@@ -33,12 +49,16 @@ class BankAccount {
         if(amountToWithdraw > 0.0) {
             if(amountToWithdraw <= this.balance) {
                 this.balance -= amountToWithdraw;
-                System.out.println("Withdrawn " + amountToWithdraw + " to " + ownerName);
+                transactionHistory.add("Withdrawn $" + amountToWithdraw + " from " + ownerName);
             }else {
-                System.out.println("Insufficient balance " + this.ownerName);
+                System.out.println("Insufficient balance " + this.ownerName + " to withdraw");
             }
         }else {
             System.out.println("Please enter a positive amount to withdraw " + this.ownerName);
         }
+    }
+
+    public void printTransactionHistory() {
+        System.out.println("Transaction History: " + this.transactionHistory);
     }
 }
